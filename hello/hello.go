@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"log"
+
 	"rsc.io/quote"
 
 	"example.com/greetings"
@@ -12,7 +14,14 @@ import (
 
 func main() {
 	fmt.Println(quote.Go())
-	message := greetings.Hello("Gladys")
+
+	log.SetPrefix("greetings: ")
+	log.SetFlags(0)
+	message, err := greetings.Hello("")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	fmt.Println(message)
 	asdf.PrintRandomDate()
 }
